@@ -1,0 +1,14 @@
+name: terraform api gateway creation
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Job was automatically triggered by ${{ github.event_name }} event."
+      - name: Checkout
+        uses: actions/checkout@v3
+      - run: echo "The ${{ github.repository }} repository has been cloned."
+      - name: Verify terraform
+        run: |
+          whereis terraform && terraform -v || echo "No terraform found"
+      - run: echo "Job's status is ${{ job.status }}"
