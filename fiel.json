@@ -1,0 +1,73 @@
+{
+  "txt_estr_api_gtwy": {
+    "txt_cami_api": "string",
+    "cod_api_gtwy": "string",
+    "nom_esta_impl": "string",
+    "nom_cotx_api": "string",
+    "nom_rcur_api": "string",
+    "cod_rcur_unic_api": "string",
+    "nom_meto_api": "string",
+    "nom_base_url_api": "string"
+  }
+}
+
+{
+  "txt_estr_tran_gtwy": {
+    "txt_estr_tran_requ_gtwy": {
+      "cod_requ_api": "string",
+      "dat_hor_tran_requ_gtwy": "string",
+      "cod_ende_prco_intt_requ": "string",
+      "nom_cabe_usua_aget": "string",
+      "cod_tipo_prco_segc": "string",
+      "nom_prco_conx": "string"
+    },
+    "txt_estr_tran_rspa_gtwy": {
+      "cod_rspa_requ_gtwy": "string",
+      "txt_mens_erro_gtwy": "string",
+      "qtd_mlso_temp_rspa": "int",
+      "cod_requ_api": "string"
+    }
+  }
+}
+
+{
+  "txt_estr_rtmt_gtwy": {
+    "cod_idef_crrl_requ_api": "string",
+    "cod_idef_crrl_requ_clod_pubi": "string"
+  }
+}
+
+{
+  "txt_estr_rede_gtwy": {
+    "cod_idef_rede_virt_clod_pubi": "string",
+    "cod_idef_pont_fina_rede_clod": "string",
+    "cod_idef_link_rede_clod_pubi": "string"
+  }
+}
+
+{
+  "txt_estr_autz_gtwy": {
+    "txt_estr_iden_autz": {
+      "cod_idef_cli_gerd": "string",
+      "cod_tipo_emio_aurt": "string",
+      "txt_idef_aplic_sud": "string",
+      "cod_chav_pubi_assi": "string"
+    },
+    "txt_est_rspa_autz": {
+      "cod_rspa_requ_gtwy": "string",
+      "txt_mens_erro_apli_gtwy": "string",
+      "qtd_mlso_temp_rspa": "int",
+      "cod_requ_api": "string"
+    }
+  }
+}
+
+{
+  "txt_estr_itgr_gtwy": {
+    "txt_estr_rspa_itgr_apli": {
+      "cod_rspa_requ_gtwy": "string",
+      "txt_mens_erro_apli_gtwy": "string",
+      "qtd_mlso_temp_rspa": "int"
+    }
+  }
+}
