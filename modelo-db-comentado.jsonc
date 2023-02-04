@@ -1,0 +1,103 @@
+{
+    // aws_account_id
+    "num_cont_clod_pubi": "421114365334",
+    // apigw
+    "txt_estr_api_gtwy": {
+        // apigw_id: "$context.apiId"
+        "cod_api_gtwy": "v6s934j5sg",
+        // endpoint_url: "$context.domainName"
+        "txt_cami_api": "v6s934j5sg.execute-api.us-east-1.amazonaws.com",
+        // stage: "$context.stage"
+        "nom_esta_impl": "prod",
+        // context_path: "$context.path"
+        "nom_cotx_api": "prod/users/555",
+        // resource_path: "$context.resourcePath"
+        "nom_rcur_api": "/users/555",
+        // resource_id: "$context.resourceId"
+        "cod_rcur_unic_api": "foz46p",
+        // http_method: "$context.httpMethod"
+        "nom_meto_api": "GET",
+        // base_path_matched: "$context.customDomain.basePathMatched"
+        "nom_base_url_api": "prod/users/555"
+    },
+    // transaction
+    "txt_estr_tran_gtwy": {
+        // request
+        "txt_estr_tran_requ_gtwy": {
+            // request_id: "$context.requestId"
+            "cod_req_api": "ad44cef5-367f-4743-89dd-f501ede39af3",
+            // request_time: "$context.requestTime"
+            "dat_hor_tran_requ_gtwy": "24/Dec/1981:07:39:05 +0000",
+            // source_ip: "$context.identity.sourceIp"
+            "cod_ende_prco_intt_requ": "104.231.121.236",
+            // user_agent: "$context.identity.userAgent"
+            "nom_cabe_usua_aget": "Opera/9.10.(X11; Linux x86_64; ta-LK) Presto/2.9.179 Version/11.00",
+            // tls_version: "$context.authorizer.metrics_tls_version"
+            "nom_tipo_prco_segc": "1.2",
+            // protocol: "$context.protocol"
+            "nom_prco_conx": "HTTP/1.1"
+        },
+        // response
+        "txt_estr_tran_rspa_gtwy": {
+            // "status": "$context.status"
+            "cod_rspa_requ_gtwy": "200",
+            // "error": "$context.error.message"
+            "txt_mens_erro_gtwy": "403",
+            // "latency": "$context.responseLatency"
+            "qtd_mlso_temp_rspa": "192"
+        }
+    },
+    // integration
+    "txt_estr_itgr_gtwy": {
+        // response
+        "txt_estr_itgr_rspa_gtwy": {
+            // "status": "$context.integration.status"
+            "cod_rspa_requ_gtwy": "201",
+            // "error": "$context.integration.error"
+            "txt_mens_erro_apli_gtwy": "403",
+            // "latency": "$context.integration.latency"
+            "qtd_mlso_temp_rspa": "983"
+        }
+    },
+    // tracing
+    "txt_estr_rtmt_gtwy": {
+        // "correlation_id": "$context.authorizer.metrics_correlation_id"
+        "cod_idef_crrl_requ_api": "38ecff3f-6d0f-4d0e-a689-e0577042ffe1",
+        // "x-ray-trace": "$context.xrayTraceId"
+        "cod_idef_crrl_requ_clod_pubi": "Root=1-f293b076-e91c-4724-b0c1-45f19a9ec854"
+    },
+    // network
+    "txt_estr_rede_gtwy": {
+        // "vpc_id": "$context.identity.vpcId"
+        "cod_idef_rede_virt_clod_pubi": "vpc-015367030928e900f",
+        // "vpce_id": "$context.identity.vpceId"
+        "cod_idef_pont_fina_rede_clod": "0",
+        // "vpc_link": "$context.authorizer.metrics_vpclink"
+        "cod_idef_link_rede_clod_pubi": "vpc-link-6"
+    },
+    // authorizer
+    "txt_estr_autz_gtwy": {
+        // identity
+        "txt_estr_iden_autz": {
+            // "client_id": "$context.authorizer.metrics_client_id"
+            "cod_idef_clie_gerd": "b41d038c-d099-4374-8401-807c8903e825",
+            // "type": "$context.authorizer.metrics_type"
+            "cod_tipo_emio_autr": "OAuth2",
+            // "app_id": "$context.authorizer.metrics_app_id"
+            "txt_idef_api_csud": "app-7",
+            // "kid": "$context.authorizer.metrics_kid"
+            "cod_chav_pubi_assi": "-"
+        },
+        // response
+        "txt_est_rspa_autz": {
+            // "status": "$context.authorizer.status"
+            "cod_rspa_requ_gtwy": "302",
+            // "error": "$context.authorizer.error"
+            "txt_mens_erro_apli_gtwy": "-",
+            // "latency": "$context.authorizer.latency
+            "qtd_mlso_temp_rspa": "279",
+            // "endpoint_id": "$context.authorizer.requestId"
+            "cod_rpsa_requ_pont_fina_autz": "04dd7d87-6b41-4cb4-9792-428843d7667c"
+        }
+    }
+}
