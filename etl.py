@@ -178,3 +178,27 @@ glueContext.write_dynamic_frame.from_options(
     connection_options = {"path": s3_destination, "partitionKeys": ["ano_mes_dia"]}, 
     format = "json"
 )
+
+#auto create partition
+'''
+part = 20191223
+
+transformed = transformed.withColumn("ano_mes_dia",lit(part))
+
+transformed_dyn = DynamicFrame.fromDF(transformed, glueContext, "transformed_df")
+
+s3_destination="s3://apigtwy-glue-database/apigtwy_transformed_logs/"
+
+write_s3_json = glueContext.getSink(
+    path = s3_destination,
+    connection_type="s3",
+    updateBehavior="UPDATE_IN_DATABASE",
+    partitionKeys=["ano_mes_dia"],
+    enableUpdateCatalog=True,
+    transformation_ctx="writeData_ctx"
+)
+
+write_s3_json.setCatalogInfo(catalogDatabase="apigtwy_database",catalogTableName="apigtwy_table")
+write_s3_json.setFormat("json")
+write_s3_json.writeFrame(transformed_dyn)
+'''
