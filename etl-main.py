@@ -8,6 +8,21 @@ from awsglue.job import Job
 from pyspark.sql.types import StructType, StructField, StringType
 from pyspark.sql.functions import explode, col, from_json, struct, lit
 
+'''
+exec
+export S3_SRC='s3://api-log-bkt/raw_data_glue_jan/'
+export S3_DEST='s3://apigtwy-glue-database/apigtwy_transformed_logs/'
+export DB='apigtwy_database'
+export TABLE='apigtwy_table'
+
+python3 src/etl-main.py \
+	--JOB_NAME='job1'\
+	--S3_SOURCE=$S3_SRC \
+	--S3_DESTINATION=$S3_DEST \
+	--DATABASE_NAME=$DB \
+	--TABLE_NAME=$TABLE		
+'''
+
 
 def read_files_from_s3(glue_context, path):
     logs_dynf = glue_context.create_dynamic_frame.from_options(
@@ -111,12 +126,11 @@ def write_to_catalog(
     write_s3_json.setFormat("json")
     write_s3_json.writeFrame(dynamic_frame)
 
-    return True
 
-
-def transform_logs(glue_context, dynamic_frame):
+def transform_logs(glue_context, dynamic_frame, partition):
     messageSchema = getMessageSchema()
-    ano_mes_dia_partition = int(datetime.now().strftime("%Y%m%d"))
+    # ano_mes_dia_partition = int(datetime.now().strftime("%Y%m%d"))
+    ano_mes_dia_partition = int(partition.replace('/',''))
     logs_df = dynamic_frame.toDF()
     msg_df = logs_df.withColumn("logs_exp", explode("logEvents"))\
         .withColumn("message", from_json(
@@ -229,9 +243,9 @@ def transform_logs(glue_context, dynamic_frame):
     return transformed_dynf
 
 
-def run():
+def run(glueContext, day):
     # dateTimePartition = datetime.now().strftime("%Y/%m/%d")
-    date_time_partition = "2023/03/06"
+    date_time_partition = "2023/01/" + day
 
     params = [
         'JOB_NAME', 'S3_SOURCE', 'S3_DESTINATION',
@@ -244,15 +258,13 @@ def run():
     table_name = args['TABLE_NAME']
     database_name = args['DATABASE_NAME']
 
-    sc = SparkContext()
-    glueContext = GlueContext(sc)
     job = Job(glueContext)
 
     job.init(job_name, args)
 
     logs_dynf = read_files_from_s3(glueContext, s3_source_path)
 
-    transformed_logs_dynf = transform_logs(glueContext, logs_dynf)
+    transformed_logs_dynf = transform_logs(glueContext, logs_dynf, date_time_partition)
 
     write_to_catalog(
         glue_context=glueContext,
@@ -265,4 +277,11 @@ def run():
     job.commit()
 
 if __name__ == '__main__':
-    run()
+    sc = SparkContext()
+    glueContext = GlueContext(sc)
+    
+    for i in range(1,32):
+        day = str(i).rjust(2,"0")
+        print(f"runinng job day: {day}")
+        run(glueContext,day)
+        print(f"finishing job day: {day}")
